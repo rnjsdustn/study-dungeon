@@ -103,4 +103,40 @@ function finish(){$('game').classList.add('hidden');$('result').classList.remove
 function lobby(){$('game').classList.add('hidden');$('result').classList.add('hidden');$('setup').classList.remove('hidden');}
 function again(){lobby();}
 $('start').addEventListener('click',start);$('next').addEventListener('click',next);$('again').addEventListener('click',again);$('lobbyFromGame').addEventListener('click',lobby);
+</script><script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+
+  import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signInAnonymously
+  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+  import {
+    getFirestore
+  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCQZww2ViSeXa4hZOVGJkevgAoAbU5AfJk",
+    authDomain: "study-dungeon-ranking.firebaseapp.com",
+    projectId: "study-dungeon-ranking",
+    storageBucket: "study-dungeon-ranking.firebasestorage.app",
+    messagingSenderId: "160871064044",
+    appId: "1:160871064044:web:5be63345b62904237860c9"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const googleProvider = new GoogleAuthProvider();
+
+  window.studyDungeonFirebase = {
+    auth,
+    db,
+    googleProvider,
+    signInWithPopup,
+    signInAnonymously
+  };
 </script></body></html>
